@@ -1,1 +1,119 @@
+import pygame
+
+pygame.init()
+
+display_width = 1000
+display_height = 1000
+
+black = (0,0,0)
+white = (255,255,255)
+
+red = (200,0,0)
+green = (0,200,0)
+
+bright_red = (255,0,0)
+bright_green = (0,255,0)
+ 
+block_color = (53,115,255)
+ 
+car_width = 73
+ 
+
+gameDisplay = pygame.display.set_mode((display_width,display_height))
+pygame.display.set_caption('Azubeasts')
+
+
+black = (0,0,0)
+white = (255,255,255)
+
+clock = pygame.time.Clock()
+crashed = False
+
+carImg = pygame.transform.scale(pygame.image.load('/Users/mazubike/advancedprograms/chikapu.png'),(100,100))
+pygame.display.set_icon(carImg)
+maps = pygame.image.load('/Users/mazubike/advancedprograms/map.png')
+
+
+
+
+
+
+
+def car(x,y):
+    gameDisplay.blit(carImg, (x,y))
+   
+
+x = 0
+y = 0
+x_change = 0
+y_change = 0
+#lowkey hate this center
+def game_intro():
+
+    intro = True
+
+    while intro:
+        for event in pygame.event.get():
+            #print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+                
+        gameDisplay.fill(white)
+       
+
+        mouse = pygame.mouse.get_pos()
+
+        #print(mouse)
+
+        if 150+100 > mouse[0] > 150 and 450+50 > mouse[1] > 450:
+            pygame.draw.rect(gameDisplay, black,(150,450,100,50))
+        else:
+            pygame.draw.rect(gameDisplay, black,(150,450,100,50))
+        pygame.draw.rect(gameDisplay, black,(550,450,100,50))
+        pygame.display.update()
+        clock.tick(15)
+
+game_intro()
+'''
+while not crashed:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            crashed = True
+
+        ############################
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x_change = 10
+            elif event.key == pygame.K_RIGHT:
+                x_change = -10
+            elif event.key == pygame.K_UP:
+                y_change = 10
+            elif event.key == pygame.K_DOWN:
+                y_change = -10
+        
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                x_change = 0
+            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                y_change = 0
+
+        if y == 500:
+                y_change = 0
+        ######################
+    ##
+    x += x_change
+    y += y_change
+   ##         
+    gameDisplay.fill((82,188,91))
+    gameDisplay.blit(maps, (x,y))
+    car(400,400)
+    #pygame.draw.rect(gameDisplay, black, (0,550,800,50))
+        
+    pygame.display.update()
+    clock.tick(90)
+
+pygame.quit()
+quit()
+
 
